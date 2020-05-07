@@ -1,0 +1,5 @@
+>> cat data | sed -e "s/\([.\!?,'/()]\)/ \1 /g" | tr "[:upper:]" "[:lower:]" > data_preprocessed
+>> head -n 12404 data_preprocessed > data.train
+>> tail -n 3000 data_preprocessed > data.valid
+
+clean up file, remove punctuation, lowercase, ...
