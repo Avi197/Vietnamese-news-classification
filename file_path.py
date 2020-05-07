@@ -1,0 +1,6 @@
+Tuoitre = '"H:/Vietnamese word representations/Text_classification_data/Tuoitre/Tuoitre.json"'
+Vnexpress = 'H:/Vietnamese word representations/Text_classification_data/Vnexpress/Vnexpress.json'
+Thanhnien = 'H:/Vietnamese word representations/Text_classification_data/Thanhnien/Thanhnien.json'
+Dantri = 'H:/Vietnamese word representations/Text_classification_data/Dantri/Dantri.json'
+Vnn = 'H:/Vietnamese word representations/Text_classification_data/Vnn/Vnn.json'
+Vtv = 'H:/Vietnamese word representations/Text_classification_data/Vtv/Vtv.json'
