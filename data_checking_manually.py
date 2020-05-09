@@ -161,15 +161,56 @@ def get_bad_title(infile, bad_title_list=None):
                 count_line += 1
 
 
+def get_short_title(infile, low, high):
+    count_line = 1
+    count_1_tag = 0
+    if 'json' in infile:
+        file_name = infile.replace('.json', '')
+    else:
+        file_name = infile
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_short_title', 'w') as outfile:
+            for obj in file:
+                if low < len(obj['title']) < high:
+                    outfile.write(obj['title'])
+                print(f'done line {count_line}')
+                count_line += 1
+
+
+def get_dash_title(infile):
+    count_line = 1
+    count_1_tag = 0
+    if 'json' in infile:
+        file_name = infile.replace('.json', '')
+    else:
+        file_name = infile
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_dash_title', 'w') as outfile:
+            for obj in file:
+                # if low < len(obj['title']) < high:
+                if not obj['title'].endswith(' '):
+                    outfile.write(obj['title'])
+                print(f'done line {count_line}')
+                count_line += 1
+
+
 # get_data_with_1_tag(Vnn_data)
 # get_only_title(Vnn_data)
 
-test = 'H:/Vietnamese word representations/Text_classification_data/Vnn/test'
-
-get_bad_title(test, vnn_bad_title)
+# test = 'H:/Vietnamese word representations/Text_classification_data/Vnn/test'
+#
+# get_bad_title(test, vnn_bad_title)
 
 # text = 'http://gamesao.vietnamnet.vn/giai-tri/nhung-em-be-noi-tieng-dang-so-nhat-trong-phim-kinh-di-17821.html'
 #
 # print('http://' in text)
 
-get_only_title(Vnexpress)
+
+# get_only_title(Vnexpress)
+# get_short_title(Vnexpress, 20, 30)
+get_dash_title(Vnexpress)
+"""
+Putin 
+F
+
+"""

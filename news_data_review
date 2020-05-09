@@ -7,7 +7,8 @@ Vnexpress
     some tags are just copy of the titles, but randomly split into smaller string and
         then add ' - VnExpress Đời sống' to the last smaller string, and
         those smaller string become tags for the title
-    some title are just broken, contain half a word, or a single character, ...
+    some title are just broken, very short, make no sense, contain half a word, or a single character, ...
+        maybe the title got cut off after the dash symbol, e.g: máy bay F-22 => máy bay F
 
 Vnn
     contain some english news
