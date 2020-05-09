@@ -2,15 +2,17 @@
 
 Data crawl from multiple big name news papers in Vietnam: `Dantri`, `Tuoitre`, `Thanhnien`, `Vietnamnet`,`Vnexpress`, `Vtv`
 
-
+### Tokenizing
 All text is tokenized using VnCoreNLP
 
+
+### Data structure
 Each line contain a list of labels, followed by the corresponding title
 All label start with ```__label__``` prefix
 
 Apply word segmentation on each label, space got replace with ``-``
 
-E.g: 
+## E.g: 
 ```
 __label__cà_phê-Trung_Nguyên __label__Buôn_Ma_Thuột __label__Đặng_Lê_Nguyên_Vũ __label__Giấc-mơ __label__Trung_Nguyên Hành_trình ông chủ Trung_Nguyên mang giấc mơ từ quê nghèo ra thế_giới 
 ```
@@ -24,7 +26,7 @@ __label__cà_phê-Trung_Nguyên __label__Buôn_Ma_Thuột __label__Đặng_Lê_N
 
 
 
-#### Data problem:  
+### Data problem:  
  
 ###### Dantri is absolutely horrible
 - large amount of records are unusable, which are titles with bad tags, not related tags
