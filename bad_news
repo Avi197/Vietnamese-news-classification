@@ -1,8 +1,10 @@
 tuoitre: title: noname
 
-vnexpress: title: short, broken, 1 word/character
+vnexpress:  title: short, broken, 1 word/character
+            tags: which contain '- VnExpress Đời sống' are just randomly split title
 
 dantri: title with wrong tags
+        doesn't have category in raw data file
 
 vnn: tag is conjoined
 

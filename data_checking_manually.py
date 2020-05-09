@@ -9,18 +9,17 @@ manually checking for some faulty data that might affect the outcome
 """
 
 
-Tuoitre = 'Tuoitre/Tuoitre'
-tuoitre_key = ''
-Vnexpress = 'Vnexpress/Vnexpress'
-vnexpress_key = ' - VnExpress Đời sống'
-Thanhnien = 'Thanhnien/Thanhnien'
-thanhnien_key = ''
-Dantri = 'Dantri/Dantri'
-dantri_key = ''
-Vnn = 'Vnn/Vnn'
-Vtv = 'Vtv/Vtv'
+Tuoitre = '"H:/Vietnamese word representations/Text_classification_data/Tuoitre/Tuoitre.json"'
+Vnexpress = 'H:/Vietnamese word representations/Text_classification_data/Vnexpress/Vnexpress.json'
+Thanhnien = 'H:/Vietnamese word representations/Text_classification_data/Thanhnien/Thanhnien.json'
+Dantri = 'H:/Vietnamese word representations/Text_classification_data/Dantri/Dantri.json'
+Vnn = 'H:/Vietnamese word representations/Text_classification_data/Vnn/Vnn.json'
+Vtv = 'H:/Vietnamese word representations/Text_classification_data/Vtv/Vtv.json'
+Vnn_no_english = 'H:/Vietnamese word representations/Text_classification_data/Vnn/Vnn_no_english'
+Vnn_data = 'H:/Vietnamese word representations/Text_classification_data/Vnn/Vnn_data'
 
-tuoitre_bad_title = ['Noname']
+
+vnn_bad_title = ['Những hình ảnh ấn tượng trong tuần', 'Bản tin thời sự VTV', 'http']
 
 
 def is_dup(obj, key=''):
@@ -46,6 +45,17 @@ def is_bad(obj, key=None):
     title = title.strip()
     if key is not None:
         return title in key
+
+
+def check_bad_title(obj, bad_title_list=None):
+    title = obj['title']
+    title = title.strip()
+    if bad_title_list is not None:
+        count = 0
+        for bad_title in bad_title_list:
+            if bad_title in title:
+                count += 1
+        return count > 0
 
 
 # write all duplicate data to file_data
@@ -99,4 +109,66 @@ def bad_data(infile, bad_key=None, dup_key=None):
             print(f'wrote to {file_name}_bad')
 
 
-bad_data(Dantri)
+def get_data_with_1_tag(infile):
+    count_line = 1
+    count_1_tag = 0
+    if 'json' in infile:
+        file_name = infile.replace('.json', '')
+    else:
+        file_name = infile
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_1_tag', 'w') as outfile:
+            for obj in file:
+                if len(obj['tags']) == 1:
+                    outfile.write(obj)
+                    count_1_tag += 1
+                print(f'done line {count_line}')
+                count_line += 1
+            outfile.write(f'\n there are {count_1_tag} records with 1 tag')
+            print(f'there are {count_1_tag} records with 1 tag')
+            print(f'wrote to {file_name}_1_tag')
+
+
+def get_only_title(infile):
+    count_line = 1
+    count_1_tag = 0
+    if 'json' in infile:
+        file_name = infile.replace('.json', '')
+    else:
+        file_name = infile
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_title', 'w') as outfile:
+            for obj in file:
+                outfile.write(obj['title'])
+                print(f'done line {count_line}')
+                count_line += 1
+
+
+def get_bad_title(infile, bad_title_list=None):
+    count_line = 1
+    count_1_tag = 0
+    if 'json' in infile:
+        file_name = infile.replace('.json', '')
+    else:
+        file_name = infile
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_bad_title', 'w') as outfile:
+            for obj in file:
+                if check_bad_title(obj, bad_title_list):
+                    print('aaaaaaaaaaaaaaaaaaaaaa')
+                    outfile.write(obj)
+                print(f'done line {count_line}')
+                count_line += 1
+
+
+# get_data_with_1_tag(Vnn_data)
+# get_only_title(Vnn_data)
+
+test = 'H:/Vietnamese word representations/Text_classification_data/Vnn/test'
+
+get_bad_title(test, vnn_bad_title)
+
+# text = 'http://gamesao.vietnamnet.vn/giai-tri/nhung-em-be-noi-tieng-dang-so-nhat-trong-phim-kinh-di-17821.html'
+#
+# print('http://' in text)
+
