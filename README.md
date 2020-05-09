@@ -34,16 +34,16 @@ __label__cà_phê-Trung_Nguyên __label__Buôn_Ma_Thuột __label__Đặng_Lê_N
 - some tags are just too long, contain many smaller tags but are put into one single tag
 
 ###### Vnexpress
-- many tags are just copy of the titles, some time add an extra string ' - VnExpress Đời sống'
+- many tags are just copy of the titles, some time add an extra string ` - VnExpress Đời sống`
 - some tags are just copy of the titles, but randomly split into smaller string and
-then add ' - VnExpress Đời sống' to the last smaller string, and
+then add ` - VnExpress Đời sống` to the last smaller string, and
 those smaller string become tags for the title
 - some title are just broken, contain half a word, or a single character, ...
 
 ###### Vnn
 - contain some english news
-- some titles have bad, non related marking tags, e.g: vnn, vietnamnet doc bao, ...
- -one/ a few(?) record(s) have tag which is just a url
+- some titles have irrelevant, non related marking tags, e.g: `vnn`, `vietnamnet doc bao`, ...
+- one/ a few(?) record(s) have tag which is just a url
 
 ###### Tuoitre
 - lots of titles with no tags
