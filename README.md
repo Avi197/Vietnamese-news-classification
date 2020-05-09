@@ -24,11 +24,24 @@ __label__cà_phê-Trung_Nguyên __label__Buôn_Ma_Thuột __label__Đặng_Lê_N
 
 
 
-#### Note:  
-###### Dantri
-- Dantri has a lot of titles with wrong tags    
-- Scripts can pick up around half of the data as usable data    
-- The rest might have to be pick manually
+#### Data problem:  
  
+###### Dantri is absolutely horrible
+- large amount of records are unusable, which are titles with bad tags, not related tags
+- some tags are just too long, contain many smaller tags but are put into one single tag
+
 ###### Vnexpress
- - Vnexpress has tags that contain `- VnExpress Đời sống` are just title that are split randomly into tags 
+- many tags are just copy of the titles, some time add an extra string ' - VnExpress Đời sống'
+- some tags are just copy of the titles, but randomly split into smaller string and
+then add ' - VnExpress Đời sống' to the last smaller string, and
+those smaller string become tags for the title
+- some title are just broken, contain half a word, or a single character, ...
+
+###### Vnn
+- contain some english news
+- some titles have bad, non related marking tags, e.g: vnn, vietnamnet doc bao, ...
+ -one/ a few(?) record(s) have tag which is just a url
+
+###### Tuoitre
+- lots of titles with no tags
+- some titles are just 'Noname'
