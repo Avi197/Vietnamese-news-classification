@@ -1,4 +1,4 @@
-# Vietnamese-news-classification
+# Vietnamese news classification
 Data crawl from multiple big name news papers in Vietnam: `Dantri`, `Tuoitre`, `Thanhnien`, `Vietnamnet`,`Vnexpress`, `Vtv`
 
 
