@@ -172,3 +172,4 @@ get_bad_title(test, vnn_bad_title)
 #
 # print('http://' in text)
 
+get_only_title(Vnexpress)
