@@ -25,7 +25,10 @@ __label__cà_phê-Trung_Nguyên __label__Buôn_Ma_Thuột __label__Đặng_Lê_N
 
 
 #### Note:  
+###### Dantri
 - Dantri has a lot of titles with wrong tags    
 - Scripts can pick up around half of the data as usable data    
 - The rest might have to be pick manually
  
+###### Vnexpress
+ - Vnexpress has tags that contain `- VnExpress Đời sống` are just title that are split randomly into tags 

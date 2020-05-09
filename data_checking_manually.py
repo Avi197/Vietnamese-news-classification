@@ -3,7 +3,11 @@ import json
 import os.path
 
 
-# f = open(os.path.dirname(__file__) + '/../data.yml')
+"""
+write bad data, dup data, just title/ tags to a new file
+manually checking for some faulty data that might affect the outcome
+"""
+
 
 Tuoitre = 'Tuoitre/Tuoitre'
 tuoitre_key = ''
@@ -34,6 +38,9 @@ def is_dup(obj, key=''):
             return False
 
 
+# check if tags appear in title
+# for Dantri only
+# Dantri has lots of title with wrong tags
 def is_bad(obj, key=None):
     title = obj['title']
     title = title.strip()
@@ -41,44 +48,55 @@ def is_bad(obj, key=None):
         return title in key
 
 
+# write all duplicate data to file_data
 def dup_data(infile, key=''):
     count_dup = 0
     count = 1
     count_write = 0
-    with jsonlines.open(infile + '.json') as file:
-        with open(f'{infile}_dup', 'w', encoding='utf-8') as outfile:
+    file_name = infile.replace('.json', '')
+
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_dup', 'w') as outfile:
             for obj in file:
                 if len(obj['tags']) == 1:
                     if is_dup(obj, key) is True:
-                        json.dump(obj, outfile, indent=2, ensure_ascii=False)
+                        outfile.write(obj)
+
+                        # json.dump(obj, outfile, indent=2, ensure_ascii=False)
                         count_dup += 1
                 print('done line {0}'.format(count))
                 count += 1
             outfile.write(f'{count_dup}')
             print(f"there are {count_dup} duplicates")
+            print(f'wrote to {file_name}_dup')
 
 
+# write all bad data to file_bad
 def bad_data(infile, bad_key=None, dup_key=None):
     count_dup = 0
     count_line = 1
     count_write = 0
     count_bad = 0
+    file_name = infile.replace('.json', '')
 
-    with jsonlines.open(infile + '.json') as file:
-        with open(f'{infile}_bad', 'w', encoding='utf-8') as outfile:
+    with jsonlines.open(infile) as file:
+        with jsonlines.open(f'{file_name}_bad', 'w') as outfile:
             for obj in file:
                 if is_bad(obj, bad_key):
-                    json.dump(obj, outfile, indent=2, ensure_ascii=False)
+                    outfile.write(obj)
+                    # json.dump(obj, outfile, indent=2, ensure_ascii=False)
                     count_bad += 1
                 elif len(obj['tags']) == 1:
                     if is_dup(obj, dup_key):
-                        json.dump(obj, outfile, indent=2, ensure_ascii=False)
+                        outfile.write(obj)
+                        # json.dump(obj, outfile, indent=2, ensure_ascii=False)
                         count_dup += 1
-                print('done line {0}'.format(count_line))
+                print(f'done line {count_line}')
                 count_line += 1
             outfile.write(f'\nthere are {count_bad} bad titles\nthere are {count_dup} duplicates')
             print(f"there are {count_bad} bad titles")
             print(f"there are {count_dup} duplicates")
+            print(f'wrote to {file_name}_bad')
 
 
 bad_data(Dantri)
