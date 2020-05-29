@@ -1,5 +1,5 @@
+from . import file_path
 import jsonlines
-import json
 from langdetect import detect
 import re
 import os.path
@@ -10,16 +10,7 @@ some records have 1 tag, which is also in bad_tag_list
 some records have tag that is a link
 """
 
-
-Tuoitre = '"H:/Vietnamese word representations/Text_classification_data/Tuoitre/Tuoitre.json"'
-Vnexpress = 'H:/Vietnamese word representations/Text_classification_data/Vnexpress/Vnexpress.json'
-Thanhnien = 'H:/Vietnamese word representations/Text_classification_data/Thanhnien/Thanhnien.json'
-Dantri = 'H:/Vietnamese word representations/Text_classification_data/Dantri/Dantri.json'
-Vnn = 'H:/Vietnamese word representations/Text_classification_data/Vnn/Vnn.json'
-Vtv = 'H:/Vietnamese word representations/Text_classification_data/Vtv/Vtv.json'
-
-
-tuoitre_bad_title = ['Noname']
+Vnn_infile = file_path.Vnn
 
 vnn_bad_tags = ['vnn', 'vietnamnet', 'vietnamnetvn', 'vietnamnetvn doc bao', 'vietnamnet.vn',
                 'tin nong', 'tin moi', 'doc bao']
@@ -92,6 +83,8 @@ def check_english(tags, english_keys):
 # this one is for vnn only
 # Vnn has some tags that are irrelevant
 # e.g: vnn, vietnamnet, ...
+# NOTE
+# you can use outfile.write(new_obj) to reduce the size of output file, as it move all "idObject"
 def get_data_vnn(infile, bad_tag_list, bad_title_list, english_keys=''):
     count_line = 1
 
@@ -128,7 +121,7 @@ def get_data_vnn(infile, bad_tag_list, bad_title_list, english_keys=''):
             print(f'wrote to {file_name}_data')
 
 
-get_data_vnn(Vnn, bad_tag_list=vnn_bad_tags, bad_title_list=vnn_bad_title, english_keys=vnn_english)
+get_data_vnn(Vnn_infile, bad_tag_list=vnn_bad_tags, bad_title_list=vnn_bad_title, english_keys=vnn_english)
 
 
 #
