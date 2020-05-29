@@ -27,19 +27,32 @@ vnn_english = 'news'
 vnn_bad_title = ['Những hình ảnh ấn tượng trong tuần', 'Bản tin thời sự VTV', 'http://']
 
 """
-Vnn has english titles, which we don't need
-some tags are irrelevant to the title, e.g: vnn, vietnamnetvn doc bao,.... which is just to mark
-the news source (???) 
-some title are just 1 general text but with lots of usable tags, remove them
+many tags are just copy of the titles, some time add an extra string - VnExpress Đời sống
+some tags are just copy of the titles, but randomly split into smaller string and then add - VnExpress Đời sống to the last smaller string, and those smaller string become tags for the title
+some title are just broken, contain half a word, or a single character, ...
+titles are cut off after '-', good thing they leave a ' ' space character so we can filter them out
 """
 
 
 """
-remove english news
-remove all bad tags in bad_tags list
-remove bad title
-check if len(tags)>0
+
 """
+
+
+# return true if tag is the same as title
+def is_dup(obj, key=''):
+    title = obj['title']
+    tag = obj['tags'][0]
+    title = title.strip()
+    tag = tag.strip()
+    if tag == title:
+        return True
+    elif tag != title:
+        title = f'{title}{key}'
+        if tag == title:
+            return True
+        else:
+            return False
 
 
 # clean up data
@@ -54,7 +67,9 @@ def get_data_vnexpress(infile, bad_tag_list, bad_title_list, english_keys=''):
     with jsonlines.open(infile) as file:
         with jsonlines.open(f'{file_name}_data', 'w') as outfile:
             for obj in file:
-                if len(obj['tags']) > 0
+                if len(obj['tags']) > 0:
+                    if not obj['title'].endswith(' '):
+                        outfile.write(obj)
                 print(f'done line {count_line}')
                 count_line += 1
             print(f'wrote to {file_name}_data')

@@ -208,9 +208,12 @@ def get_dash_title(infile):
 
 # get_only_title(Vnexpress)
 # get_short_title(Vnexpress, 20, 30)
-get_dash_title(Vnexpress)
+# get_dash_title(Vnexpress)
+get_bad_title(Vnn)
 """
 Putin 
 F
 
 """
+
+
